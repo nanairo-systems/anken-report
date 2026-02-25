@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📋</text></svg>">
 <title>案件報告</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;600;700&display=swap" rel="stylesheet">
@@ -34,32 +35,21 @@
     padding: 0;
   }
 
-  /* Header */
   .header {
     background: var(--primary);
     color: var(--white);
     padding: 16px 20px;
     text-align: center;
   }
-  .header h1 {
-    font-size: 18px;
-    font-weight: 700;
-    letter-spacing: 0.05em;
-  }
-  .header p {
-    font-size: 12px;
-    opacity: 0.8;
-    margin-top: 4px;
-  }
+  .header h1 { font-size: 18px; font-weight: 700; letter-spacing: 0.05em; }
+  .header p { font-size: 12px; opacity: 0.8; margin-top: 4px; }
 
-  /* Main */
   .main {
     padding: 20px 16px;
     max-width: 480px;
     margin: 0 auto;
   }
 
-  /* Guide Box */
   .guide {
     background: var(--primary-light);
     border-left: 4px solid var(--primary);
@@ -67,319 +57,95 @@
     padding: 14px 16px;
     margin-bottom: 24px;
   }
-  .guide-title {
-    font-size: 13px;
-    font-weight: 700;
-    color: var(--primary-dark);
-    margin-bottom: 8px;
-  }
-  .guide-items {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-  }
-  .guide-items li {
-    font-size: 13px;
-    color: var(--text);
-    line-height: 1.5;
-    padding-left: 20px;
-    position: relative;
-  }
-  .guide-items li .num {
-    position: absolute;
-    left: 0;
-    font-weight: 700;
-    color: var(--primary);
-  }
+  .guide-title { font-size: 13px; font-weight: 700; color: var(--primary-dark); margin-bottom: 8px; }
+  .guide-items { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+  .guide-items li { font-size: 13px; color: var(--text); line-height: 1.5; padding-left: 20px; position: relative; }
+  .guide-items li .num { position: absolute; left: 0; font-weight: 700; color: var(--primary); }
 
-  /* Input Section */
-  .section {
-    margin-bottom: 24px;
-  }
-  .label {
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--text);
-    margin-bottom: 8px;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
-  .label .required {
-    font-size: 10px;
-    background: var(--danger);
-    color: var(--white);
-    padding: 1px 6px;
-    border-radius: 3px;
-    font-weight: 600;
-  }
+  .section { margin-bottom: 24px; }
+  .label { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
+  .label .required { font-size: 10px; background: var(--danger); color: var(--white); padding: 1px 6px; border-radius: 3px; font-weight: 600; }
 
   .input-field {
-    width: 100%;
-    padding: 14px 16px;
-    border: 2px solid var(--border);
-    border-radius: 10px;
-    font-size: 16px;
-    font-family: 'Noto Sans JP', sans-serif;
-    background: var(--white);
-    transition: border-color 0.2s;
-    -webkit-appearance: none;
+    width: 100%; padding: 14px 16px; border: 2px solid var(--border); border-radius: 10px;
+    font-size: 16px; font-family: 'Noto Sans JP', sans-serif; background: var(--white);
+    transition: border-color 0.2s; -webkit-appearance: none;
   }
-  .input-field:focus {
-    outline: none;
-    border-color: var(--primary);
-  }
-  .input-field.error {
-    border-color: var(--danger);
-    background: var(--danger-light);
-  }
-  .input-hint {
-    font-size: 11px;
-    color: var(--text-sub);
-    margin-top: 6px;
-  }
-  .input-error {
-    font-size: 12px;
-    color: var(--danger);
-    margin-top: 6px;
-    display: none;
-  }
-  .input-error.show {
-    display: block;
-  }
+  .input-field:focus { outline: none; border-color: var(--primary); }
+  .input-field.error { border-color: var(--danger); background: var(--danger-light); }
+  .input-hint { font-size: 11px; color: var(--text-sub); margin-top: 6px; }
+  .input-error { font-size: 12px; color: var(--danger); margin-top: 6px; display: none; }
+  .input-error.show { display: block; }
 
-  /* Recording Section */
   .recorder {
-    background: var(--white);
-    border-radius: 16px;
-    padding: 24px 20px;
-    text-align: center;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    background: var(--white); border-radius: 16px; padding: 24px 20px;
+    text-align: center; box-shadow: 0 2px 12px rgba(0,0,0,0.06);
   }
 
   .rec-btn {
-    width: 88px;
-    height: 88px;
-    border-radius: 50%;
-    border: none;
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.2s;
-    position: relative;
+    width: 88px; height: 88px; border-radius: 50%; border: none; cursor: pointer;
+    display: inline-flex; align-items: center; justify-content: center;
+    transition: all 0.2s; position: relative;
   }
-  .rec-btn:active {
-    transform: scale(0.95);
-  }
-
-  .rec-btn.idle {
-    background: var(--primary);
-    box-shadow: 0 4px 16px rgba(26, 86, 50, 0.3);
-  }
+  .rec-btn:active { transform: scale(0.95); }
+  .rec-btn.idle { background: var(--primary); box-shadow: 0 4px 16px rgba(26,86,50,0.3); }
   .rec-btn.idle svg { fill: var(--white); }
-
-  .rec-btn.recording {
-    background: var(--recording);
-    box-shadow: 0 4px 20px rgba(192, 57, 43, 0.4);
-    animation: pulse 1.5s ease-in-out infinite;
-  }
+  .rec-btn.recording { background: var(--recording); box-shadow: 0 4px 20px rgba(192,57,43,0.4); animation: pulse 1.5s ease-in-out infinite; }
   .rec-btn.recording svg { fill: var(--white); }
 
   @keyframes pulse {
-    0%, 100% { box-shadow: 0 4px 20px rgba(192, 57, 43, 0.4); }
-    50% { box-shadow: 0 4px 32px rgba(192, 57, 43, 0.6); }
+    0%, 100% { box-shadow: 0 4px 20px rgba(192,57,43,0.4); }
+    50% { box-shadow: 0 4px 32px rgba(192,57,43,0.6); }
   }
 
-  .rec-status {
-    font-size: 14px;
-    font-weight: 600;
-    margin-top: 14px;
-    color: var(--text-sub);
-  }
-  .rec-status.active {
-    color: var(--recording);
-  }
+  .rec-status { font-size: 14px; font-weight: 600; margin-top: 14px; color: var(--text-sub); }
+  .rec-status.active { color: var(--recording); }
+  .rec-timer { font-size: 32px; font-weight: 700; color: var(--text); margin-top: 8px; font-variant-numeric: tabular-nums; letter-spacing: 0.05em; }
 
-  .rec-timer {
-    font-size: 32px;
-    font-weight: 700;
-    color: var(--text);
-    margin-top: 8px;
-    font-variant-numeric: tabular-nums;
-    letter-spacing: 0.05em;
-  }
-
-  .rec-btn.disabled {
-    background: #ccc;
-    box-shadow: none;
-    pointer-events: none;
-  }
-
-  /* Playback */
   .playback {
-    margin-top: 16px;
-    display: none;
-    align-items: center;
-    gap: 12px;
-    padding: 12px 16px;
-    background: var(--bg);
-    border-radius: 10px;
+    margin-top: 16px; display: none; align-items: center; gap: 12px;
+    padding: 12px 16px; background: var(--bg); border-radius: 10px;
   }
   .playback.show { display: flex; }
 
   .play-btn {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    border: none;
-    background: var(--primary);
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
+    width: 40px; height: 40px; border-radius: 50%; border: none; background: var(--primary);
+    cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0;
   }
   .play-btn svg { fill: var(--white); width: 16px; height: 16px; }
-
-  .play-info {
-    font-size: 13px;
-    color: var(--text-sub);
-  }
-  .play-info strong {
-    color: var(--text);
-  }
+  .play-info { font-size: 13px; color: var(--text-sub); }
+  .play-info strong { color: var(--text); }
 
   .retake-btn {
-    margin-left: auto;
-    font-size: 12px;
-    color: var(--danger);
-    background: none;
-    border: 1px solid var(--danger);
-    border-radius: 6px;
-    padding: 6px 12px;
-    cursor: pointer;
-    font-family: 'Noto Sans JP', sans-serif;
-    font-weight: 600;
-    flex-shrink: 0;
+    margin-left: auto; font-size: 12px; color: var(--danger); background: none;
+    border: 1px solid var(--danger); border-radius: 6px; padding: 6px 12px; cursor: pointer;
+    font-family: 'Noto Sans JP', sans-serif; font-weight: 600; flex-shrink: 0;
   }
 
-  /* Submit */
   .submit-btn {
-    width: 100%;
-    padding: 16px;
-    border: none;
-    border-radius: 12px;
-    font-size: 16px;
-    font-weight: 700;
-    font-family: 'Noto Sans JP', sans-serif;
-    cursor: pointer;
-    transition: all 0.2s;
-    letter-spacing: 0.05em;
+    width: 100%; padding: 16px; border: none; border-radius: 12px; font-size: 16px;
+    font-weight: 700; font-family: 'Noto Sans JP', sans-serif; cursor: pointer;
+    transition: all 0.2s; letter-spacing: 0.05em;
   }
-  .submit-btn.ready {
-    background: var(--primary);
-    color: var(--white);
-    box-shadow: 0 4px 16px rgba(26, 86, 50, 0.3);
-  }
-  .submit-btn.ready:active {
-    transform: scale(0.98);
-  }
-  .submit-btn.disabled {
-    background: #ccc;
-    color: #999;
-    pointer-events: none;
-  }
-  .submit-btn.sending {
-    background: var(--primary);
-    color: var(--white);
-    opacity: 0.7;
-    pointer-events: none;
-  }
+  .submit-btn.ready { background: var(--primary); color: var(--white); box-shadow: 0 4px 16px rgba(26,86,50,0.3); }
+  .submit-btn.ready:active { transform: scale(0.98); }
+  .submit-btn.disabled { background: #ccc; color: #999; pointer-events: none; }
+  .submit-btn.sending { background: var(--primary); color: var(--white); opacity: 0.7; pointer-events: none; }
 
-  /* Progress */
-  .progress-bar {
-    width: 100%;
-    height: 4px;
-    background: var(--border);
-    border-radius: 2px;
-    margin-bottom: 16px;
-    overflow: hidden;
-    display: none;
-  }
+  .progress-bar { width: 100%; height: 4px; background: var(--border); border-radius: 2px; margin-bottom: 16px; overflow: hidden; display: none; }
   .progress-bar.show { display: block; }
-  .progress-fill {
-    height: 100%;
-    background: var(--primary);
-    border-radius: 2px;
-    width: 0%;
-    transition: width 0.3s;
-  }
+  .progress-fill { height: 100%; background: var(--primary); border-radius: 2px; width: 0%; transition: width 0.3s; }
 
-  /* Success Screen */
-  .success-screen {
-    display: none;
-    text-align: center;
-    padding: 40px 20px;
-  }
+  .success-screen { display: none; text-align: center; padding: 40px 20px; }
   .success-screen.show { display: block; }
-  .success-icon {
-    width: 72px;
-    height: 72px;
-    background: var(--success);
-    border-radius: 50%;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 20px;
-  }
+  .success-icon { width: 72px; height: 72px; background: var(--success); border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; margin-bottom: 20px; }
   .success-icon svg { fill: var(--white); width: 36px; height: 36px; }
-  .success-title {
-    font-size: 20px;
-    font-weight: 700;
-    margin-bottom: 8px;
-  }
-  .success-sub {
-    font-size: 14px;
-    color: var(--text-sub);
-    margin-bottom: 32px;
-    line-height: 1.6;
-  }
-  .new-report-btn {
-    display: inline-block;
-    padding: 14px 32px;
-    background: var(--primary);
-    color: var(--white);
-    border: none;
-    border-radius: 10px;
-    font-size: 15px;
-    font-weight: 600;
-    font-family: 'Noto Sans JP', sans-serif;
-    cursor: pointer;
-    letter-spacing: 0.05em;
-  }
+  .success-title { font-size: 20px; font-weight: 700; margin-bottom: 8px; }
+  .success-sub { font-size: 14px; color: var(--text-sub); margin-bottom: 32px; line-height: 1.6; }
+  .new-report-btn { display: inline-block; padding: 14px 32px; background: var(--primary); color: var(--white); border: none; border-radius: 10px; font-size: 15px; font-weight: 600; font-family: 'Noto Sans JP', sans-serif; cursor: pointer; letter-spacing: 0.05em; }
 
-  /* Error toast */
-  .toast {
-    position: fixed;
-    bottom: 32px;
-    left: 50%;
-    transform: translateX(-50%) translateY(100px);
-    background: #333;
-    color: var(--white);
-    padding: 12px 24px;
-    border-radius: 10px;
-    font-size: 13px;
-    font-weight: 600;
-    z-index: 100;
-    transition: transform 0.3s;
-    max-width: 90%;
-    text-align: center;
-  }
-  .toast.show {
-    transform: translateX(-50%) translateY(0);
-  }
+  .toast { position: fixed; bottom: 32px; left: 50%; transform: translateX(-50%) translateY(100px); background: #333; color: var(--white); padding: 12px 24px; border-radius: 10px; font-size: 13px; font-weight: 600; z-index: 100; transition: transform 0.3s; max-width: 90%; text-align: center; }
+  .toast.show { transform: translateX(-50%) translateY(0); }
 </style>
 </head>
 <body>
@@ -390,7 +156,6 @@
 </div>
 
 <div class="main" id="mainScreen">
-
   <div class="guide">
     <div class="guide-title">🎤 この3つを話してください</div>
     <ul class="guide-items">
@@ -400,26 +165,13 @@
     </ul>
   </div>
 
-  <!-- 案件キー入力 -->
   <div class="section">
-    <div class="label">
-      案件キー
-      <span class="required">必須</span>
-    </div>
-    <input
-      type="text"
-      id="ankenKey"
-      class="input-field"
-      placeholder="例：MIT12345-03"
-      autocomplete="off"
-      autocorrect="off"
-      autocapitalize="characters"
-    >
+    <div class="label">案件キー <span class="required">必須</span></div>
+    <input type="text" id="ankenKey" class="input-field" placeholder="例：MIT12345-03" autocomplete="off" autocorrect="off" autocapitalize="characters">
     <div class="input-hint">案件番号＋ハイフン＋担当者番号</div>
     <div class="input-error" id="ankenError">案件キーの形式が正しくありません</div>
   </div>
 
-  <!-- 録音セクション -->
   <div class="section">
     <div class="label">音声報告</div>
     <div class="recorder">
@@ -433,31 +185,22 @@
 
       <div class="playback" id="playback">
         <button class="play-btn" onclick="togglePlayback()">
-          <svg viewBox="0 0 24 24" id="playIcon">
-            <path d="M8 5v14l11-7z"/>
-          </svg>
+          <svg viewBox="0 0 24 24" id="playIcon"><path d="M8 5v14l11-7z"/></svg>
         </button>
-        <div class="play-info">
-          録音完了 <strong id="recDuration">0:00</strong>
-        </div>
+        <div class="play-info">録音完了 <strong id="recDuration">0:00</strong></div>
         <button class="retake-btn" onclick="retake()">撮り直す</button>
       </div>
     </div>
   </div>
 
-  <!-- 送信 -->
   <div class="section">
     <div class="progress-bar" id="progressBar">
       <div class="progress-fill" id="progressFill"></div>
     </div>
-    <button class="submit-btn disabled" id="submitBtn" onclick="submit()">
-      送信する
-    </button>
+    <button class="submit-btn disabled" id="submitBtn" onclick="submitReport()">送信する</button>
   </div>
-
 </div>
 
-<!-- 完了画面 -->
 <div class="success-screen" id="successScreen">
   <div class="success-icon">
     <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
@@ -467,12 +210,11 @@
   <button class="new-report-btn" onclick="resetAll()">次の報告を入力</button>
 </div>
 
-<!-- Toast -->
 <div class="toast" id="toast"></div>
 
 <script>
   // ============================================
-  // 設定 - GASデプロイ後にURLを設定してください
+  // GAS URL
   // ============================================
   const GAS_URL = 'https://script.google.com/macros/s/AKfycbzqiDCISGMQonQsjDSTinU_gyytDz0DfV4vRIHv-k3RrXvUchjq1mj3EMZdCLPPhSd6Pw/exec';
 
@@ -489,27 +231,23 @@
   let timerInterval = null;
   let seconds = 0;
 
-  // ============================================
-  // 案件キーバリデーション
-  // ============================================
   const ankenInput = document.getElementById('ankenKey');
   const ankenError = document.getElementById('ankenError');
 
-  ankenInput.addEventListener('input', () => {
+  ankenInput.addEventListener('input', function() {
     ankenError.classList.remove('show');
     ankenInput.classList.remove('error');
     updateSubmitState();
   });
 
   function validateAnkenKey() {
-    const val = ankenInput.value.trim();
+    var val = ankenInput.value.trim();
     if (!val) {
       ankenError.textContent = '案件キーを入力してください';
       ankenError.classList.add('show');
       ankenInput.classList.add('error');
       return false;
     }
-    // 仮のバリデーション：3文字以上あればOK（後で正式フォーマットに変更）
     if (val.length < 3) {
       ankenError.textContent = '案件キーの形式が正しくありません';
       ankenError.classList.add('show');
@@ -532,41 +270,34 @@
 
   async function startRecording() {
     try {
-      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-
-      // iPhoneのSafari対応：mp4/aacを優先、非対応ならwebm
-      let mimeType = 'audio/mp4';
+      var stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      var mimeType = 'audio/mp4';
       if (!MediaRecorder.isTypeSupported(mimeType)) {
         mimeType = 'audio/webm;codecs=opus';
       }
       if (!MediaRecorder.isTypeSupported(mimeType)) {
-        mimeType = ''; // デフォルトに任せる
+        mimeType = '';
       }
-
-      const options = mimeType ? { mimeType } : {};
+      var options = mimeType ? { mimeType: mimeType } : {};
       mediaRecorder = new MediaRecorder(stream, options);
       audioChunks = [];
 
-      mediaRecorder.ondataavailable = (e) => {
+      mediaRecorder.ondataavailable = function(e) {
         if (e.data.size > 0) audioChunks.push(e.data);
       };
 
-      mediaRecorder.onstop = () => {
-        const type = mediaRecorder.mimeType || 'audio/mp4';
-        audioBlob = new Blob(audioChunks, { type });
+      mediaRecorder.onstop = function() {
+        var type = mediaRecorder.mimeType || 'audio/mp4';
+        audioBlob = new Blob(audioChunks, { type: type });
         audioUrl = URL.createObjectURL(audioBlob);
         audioElement = new Audio(audioUrl);
-        audioElement.onended = () => {
-          isPlaying = false;
-          updatePlayIcon();
-        };
+        audioElement.onended = function() { isPlaying = false; updatePlayIcon(); };
         showPlayback();
         updateSubmitState();
-        // ストリームを停止
-        stream.getTracks().forEach(t => t.stop());
+        stream.getTracks().forEach(function(t) { t.stop(); });
       };
 
-      mediaRecorder.start(1000); // 1秒ごとにデータ取得
+      mediaRecorder.start(1000);
       isRecording = true;
       seconds = 0;
       updateRecUI();
@@ -586,15 +317,11 @@
   }
 
   function retake() {
-    audioBlob = null;
-    audioUrl = null;
-    audioElement = null;
-    isPlaying = false;
-    seconds = 0;
+    audioBlob = null; audioUrl = null; audioElement = null;
+    isPlaying = false; seconds = 0;
     document.getElementById('playback').classList.remove('show');
     document.getElementById('recTimer').textContent = '0:00';
-    updateRecUI();
-    updateSubmitState();
+    updateRecUI(); updateSubmitState();
   }
 
   // ============================================
@@ -603,18 +330,15 @@
   function togglePlayback() {
     if (!audioElement) return;
     if (isPlaying) {
-      audioElement.pause();
-      audioElement.currentTime = 0;
-      isPlaying = false;
+      audioElement.pause(); audioElement.currentTime = 0; isPlaying = false;
     } else {
-      audioElement.play();
-      isPlaying = true;
+      audioElement.play(); isPlaying = true;
     }
     updatePlayIcon();
   }
 
   function updatePlayIcon() {
-    const icon = document.getElementById('playIcon');
+    var icon = document.getElementById('playIcon');
     if (isPlaying) {
       icon.innerHTML = '<rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/>';
     } else {
@@ -626,21 +350,18 @@
   // UI更新
   // ============================================
   function updateRecUI() {
-    const btn = document.getElementById('recBtn');
-    const status = document.getElementById('recStatus');
-    const icon = document.getElementById('recIcon');
-
+    var btn = document.getElementById('recBtn');
+    var status = document.getElementById('recStatus');
+    var icon = document.getElementById('recIcon');
     if (isRecording) {
       btn.className = 'rec-btn recording';
       status.textContent = '録音中...タップして停止';
       status.className = 'rec-status active';
-      // 停止アイコン（四角）
       icon.setAttribute('d', 'M6 6h12v12H6z');
     } else {
       btn.className = 'rec-btn idle';
       status.textContent = audioBlob ? '録音完了' : 'タップして録音開始';
       status.className = 'rec-status';
-      // マイクアイコン
       icon.setAttribute('d', 'M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3zm-1-9c0-.55.45-1 1-1s1 .45 1 1v6c0 .55-.45 1-1 1s-1-.45-1-1V5zm6 6c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z');
     }
   }
@@ -651,67 +372,53 @@
   }
 
   function updateSubmitState() {
-    const btn = document.getElementById('submitBtn');
-    const hasKey = ankenInput.value.trim().length >= 3;
-    const hasAudio = !!audioBlob;
-
-    if (hasKey && hasAudio) {
-      btn.className = 'submit-btn ready';
-    } else {
-      btn.className = 'submit-btn disabled';
-    }
+    var btn = document.getElementById('submitBtn');
+    var hasKey = ankenInput.value.trim().length >= 3;
+    var hasAudio = !!audioBlob;
+    btn.className = (hasKey && hasAudio) ? 'submit-btn ready' : 'submit-btn disabled';
   }
 
   // ============================================
   // タイマー
   // ============================================
   function startTimer() {
-    timerInterval = setInterval(() => {
+    timerInterval = setInterval(function() {
       seconds++;
       document.getElementById('recTimer').textContent = formatTime(seconds);
     }, 1000);
   }
-
-  function stopTimer() {
-    clearInterval(timerInterval);
-  }
-
+  function stopTimer() { clearInterval(timerInterval); }
   function formatTime(s) {
-    const min = Math.floor(s / 60);
-    const sec = s % 60;
-    return `${min}:${sec.toString().padStart(2, '0')}`;
+    var min = Math.floor(s / 60);
+    var sec = s % 60;
+    return min + ':' + (sec < 10 ? '0' : '') + sec;
   }
 
   // ============================================
   // 送信
   // ============================================
-  async function submit() {
+  async function submitReport() {
     if (!validateAnkenKey()) return;
-    if (!audioBlob) {
-      showToast('音声を録音してください');
-      return;
-    }
+    if (!audioBlob) { showToast('音声を録音してください'); return; }
 
-    const btn = document.getElementById('submitBtn');
-    const progress = document.getElementById('progressBar');
-    const fill = document.getElementById('progressFill');
+    var btn = document.getElementById('submitBtn');
+    var progress = document.getElementById('progressBar');
+    var fill = document.getElementById('progressFill');
 
     btn.className = 'submit-btn sending';
     btn.textContent = '送信中...';
     progress.classList.add('show');
 
-    // プログレスアニメーション
-    let prog = 0;
-    const progInterval = setInterval(() => {
-      prog = Math.min(prog + Math.random() * 15, 90);
+    var prog = 0;
+    var progInterval = setInterval(function() {
+      prog = Math.min(prog + Math.random() * 10, 90);
       fill.style.width = prog + '%';
-    }, 500);
+    }, 800);
 
     try {
-      // 音声をBase64に変換
-      const base64 = await blobToBase64(audioBlob);
+      var base64 = await blobToBase64(audioBlob);
 
-      const payload = {
+      var payload = {
         ankenKey: ankenInput.value.trim(),
         audio: base64,
         mimeType: audioBlob.type,
@@ -719,48 +426,39 @@
         timestamp: new Date().toISOString()
       };
 
-      if (!GAS_URL) {
-        // GAS URL未設定時はデモモード
-        await new Promise(r => setTimeout(r, 2000));
-        clearInterval(progInterval);
-        fill.style.width = '100%';
-        setTimeout(() => showSuccess(), 300);
-        return;
-      }
-
-      const res = await fetch(GAS_URL, {
+      // GASにPOST送信（リダイレクトフォロー対応）
+      var response = await fetch(GAS_URL, {
         method: 'POST',
-        headers: { 'Content-Type': 'text/plain' },
-        body: JSON.stringify(payload)
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify(payload),
+        redirect: 'follow'
       });
 
-      const result = await res.json();
+      var result = await response.json();
 
       clearInterval(progInterval);
       fill.style.width = '100%';
 
       if (result.success) {
-        setTimeout(() => showSuccess(), 300);
+        setTimeout(function() { showSuccess(); }, 300);
       } else {
         throw new Error(result.error || '送信に失敗しました');
       }
+
     } catch (err) {
       clearInterval(progInterval);
       progress.classList.remove('show');
       btn.className = 'submit-btn ready';
       btn.textContent = '送信する';
-      showToast('送信に失敗しました。もう一度お試しください。');
-      console.error(err);
+      showToast('送信に失敗しました: ' + (err.message || 'もう一度お試しください'));
+      console.error('Submit error:', err);
     }
   }
 
   function blobToBase64(blob) {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        const base64 = reader.result.split(',')[1];
-        resolve(base64);
-      };
+    return new Promise(function(resolve, reject) {
+      var reader = new FileReader();
+      reader.onloadend = function() { resolve(reader.result.split(',')[1]); };
       reader.onerror = reject;
       reader.readAsDataURL(blob);
     });
@@ -775,15 +473,9 @@
   }
 
   function resetAll() {
-    // リセット
     ankenInput.value = '';
-    audioBlob = null;
-    audioUrl = null;
-    audioElement = null;
-    isPlaying = false;
-    isRecording = false;
-    seconds = 0;
-
+    audioBlob = null; audioUrl = null; audioElement = null;
+    isPlaying = false; isRecording = false; seconds = 0;
     document.getElementById('recTimer').textContent = '0:00';
     document.getElementById('playback').classList.remove('show');
     document.getElementById('progressBar').classList.remove('show');
@@ -791,7 +483,6 @@
     document.getElementById('submitBtn').className = 'submit-btn disabled';
     document.getElementById('submitBtn').textContent = '送信する';
     updateRecUI();
-
     document.getElementById('successScreen').classList.remove('show');
     document.getElementById('mainScreen').style.display = 'block';
   }
@@ -800,10 +491,10 @@
   // トースト通知
   // ============================================
   function showToast(msg) {
-    const toast = document.getElementById('toast');
+    var toast = document.getElementById('toast');
     toast.textContent = msg;
     toast.classList.add('show');
-    setTimeout(() => toast.classList.remove('show'), 3000);
+    setTimeout(function() { toast.classList.remove('show'); }, 4000);
   }
 </script>
 
