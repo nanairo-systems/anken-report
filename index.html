@@ -25,6 +25,8 @@
     --border: #ddd;
     --recording: #c0392b;
     --success: #27ae60;
+    --notice: #2980b9;
+    --notice-light: #eaf2f8;
   }
 
   body {
@@ -50,6 +52,23 @@
     margin: 0 auto;
   }
 
+  /* モード切替 */
+  .mode-toggle {
+    display: flex; gap: 8px; margin-bottom: 20px;
+  }
+  .mode-btn {
+    flex: 1; padding: 12px 8px; border: 2px solid var(--border); border-radius: 10px;
+    background: var(--white); font-size: 14px; font-weight: 600;
+    font-family: 'Noto Sans JP', sans-serif; cursor: pointer; text-align: center;
+    transition: all 0.2s; color: var(--text-sub);
+  }
+  .mode-btn.active-report {
+    border-color: var(--primary); background: var(--primary-light); color: var(--primary-dark);
+  }
+  .mode-btn.active-notice {
+    border-color: var(--notice); background: var(--notice-light); color: var(--notice);
+  }
+
   .guide {
     background: var(--primary-light);
     border-left: 4px solid var(--primary);
@@ -57,23 +76,32 @@
     padding: 14px 16px;
     margin-bottom: 24px;
   }
+  .guide.notice-guide {
+    background: var(--notice-light);
+    border-left-color: var(--notice);
+  }
   .guide-title { font-size: 13px; font-weight: 700; color: var(--primary-dark); margin-bottom: 8px; }
+  .guide.notice-guide .guide-title { color: var(--notice); }
   .guide-items { list-style: none; display: flex; flex-direction: column; gap: 6px; }
   .guide-items li { font-size: 13px; color: var(--text); line-height: 1.5; padding-left: 20px; position: relative; }
   .guide-items li .num { position: absolute; left: 0; font-weight: 700; color: var(--primary); }
+  .guide.notice-guide .guide-items li .num { color: var(--notice); }
 
   .section { margin-bottom: 24px; }
   .label { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
   .label .required { font-size: 10px; background: var(--danger); color: var(--white); padding: 1px 6px; border-radius: 3px; font-weight: 600; }
 
-  .input-field {
+  .select-field {
     width: 100%; padding: 14px 16px; border: 2px solid var(--border); border-radius: 10px;
     font-size: 16px; font-family: 'Noto Sans JP', sans-serif; background: var(--white);
     transition: border-color 0.2s; -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M0 0l6 8 6-8z' fill='%23666'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
   }
-  .input-field:focus { outline: none; border-color: var(--primary); }
-  .input-field.error { border-color: var(--danger); background: var(--danger-light); }
-  .input-hint { font-size: 11px; color: var(--text-sub); margin-top: 6px; }
+  .select-field:focus { outline: none; border-color: var(--primary); }
+  .select-field.error { border-color: var(--danger); background-color: var(--danger-light); }
+
   .input-error { font-size: 12px; color: var(--danger); margin-top: 6px; display: none; }
   .input-error.show { display: block; }
 
@@ -151,28 +179,63 @@
 <body>
 
 <div class="header">
-  <h1>📋 案件報告</h1>
-  <p>音声で報告するだけ・1〜2分でOK</p>
+  <h1>📋 塗り替え道場 報告</h1>
+  <p>音声で報告・3〜5分でOK</p>
 </div>
 
 <div class="main" id="mainScreen">
-  <div class="guide">
-    <div class="guide-title">🎤 この4つを話してください</div>
+
+  <!-- モード切替 -->
+  <div class="mode-toggle">
+    <button class="mode-btn active-report" id="modeReport" onclick="setMode('report')">📋 案件報告</button>
+    <button class="mode-btn" id="modeNotice" onclick="setMode('notice')">📢 社内連絡</button>
+  </div>
+
+  <!-- 案件報告ガイド -->
+  <div class="guide" id="guideReport">
+    <div class="guide-title">🎤 順番に話してください（3〜5分でOK）</div>
     <ul class="guide-items">
-      <li><span class="num">①</span> 今日どうだった？（契約・検討中・厳しいなど）</li>
-      <li><span class="num">②</span> お客さんが気にしてたことは？</li>
-      <li><span class="num">③</span> 次に何をする？（再訪日・見積修正・店長同行など）</li>
-      <li><span class="num">④</span> お客さん名と地域は？（例：山田様・港区など）</li>
+      <li><span class="num">①</span> 誰？ → お客様の名前と地域（例：港区の山田様）</li>
+      <li><span class="num">②</span> 何した？ → 今日やったこと（現調・見積提出・打合せなど）</li>
+      <li><span class="num">③</span> 結果は？ → どうなった？（契約・検討中・厳しいなど）</li>
+      <li><span class="num">④</span> お客様の声は？ → 気にしてたこと・質問・不安・要望など詳しく</li>
+      <li><span class="num">⑤</span> 次どうする？ → 次のアクション（再訪日・見積修正・色決めなど）</li>
+      <li><span class="num">⑥</span> 他に気になったことは？ → 競合・家族の反対・建物の状態など自由に</li>
     </ul>
   </div>
 
-  <div class="section">
-    <div class="label">案件キー <span class="required">必須</span></div>
-    <input type="text" id="ankenKey" class="input-field" placeholder="例：12345678-03" autocomplete="off" autocorrect="off" autocapitalize="characters">
-    <div class="input-hint">案件番号＋ハイフン＋担当者番号</div>
-    <div class="input-error" id="ankenError">案件キーの形式が正しくありません</div>
+  <!-- 社内連絡ガイド -->
+  <div class="guide notice-guide" id="guideNotice" style="display:none;">
+    <div class="guide-title">📢 社内への連絡事項を話してください</div>
+    <ul class="guide-items">
+      <li><span class="num">①</span> 誰に？ → 全店 or 店舗名（例：緑店のみ）</li>
+      <li><span class="num">②</span> 何を？ → 連絡内容を具体的に</li>
+      <li><span class="num">③</span> いつまで？ → 期限や日時があれば</li>
+    </ul>
   </div>
 
+  <!-- 社員選択 -->
+  <div class="section">
+    <div class="label">報告者 <span class="required">必須</span></div>
+    <select id="staffSelect" class="select-field" onchange="updateSubmitState()">
+      <option value="">選択してください</option>
+      <option value="小林">小林</option>
+      <option value="河合">河合</option>
+      <option value="井村">井村</option>
+      <option value="相澤">相澤</option>
+      <option value="森">森</option>
+      <option value="花井">花井</option>
+      <option value="前田">前田</option>
+      <option value="足立">足立</option>
+      <option value="岩崎">岩崎</option>
+      <option value="北山">北山</option>
+      <option value="山本">山本</option>
+      <option value="本部事務">本部事務</option>
+    </select>
+    <div class="input-error" id="staffError">報告者を選択してください</div>
+  </div>
+
+  <!-- 録音 -->
   <div class="section">
     <div class="label">音声報告</div>
     <div class="recorder">
@@ -194,6 +257,7 @@
     </div>
   </div>
 
+  <!-- 送信 -->
   <div class="section">
     <div class="progress-bar" id="progressBar">
       <div class="progress-fill" id="progressFill"></div>
@@ -202,6 +266,7 @@
   </div>
 </div>
 
+<!-- 完了画面 -->
 <div class="success-screen" id="successScreen">
   <div class="success-icon">
     <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
@@ -217,44 +282,58 @@
   // ============================================
   // GAS URL
   // ============================================
-  const GAS_URL = 'https://script.google.com/macros/s/AKfycbzqiDCISGMQonQsjDSTinU_gyytDz0DfV4vRIHv-k3RrXvUchjq1mj3EMZdCLPPhSd6Pw/exec';
+  var GAS_URL = 'https://script.google.com/macros/s/AKfycbzqiDCISGMQonQsjDSTinU_gyytDz0DfV4vRIHv-k3RrXvUchjq1mj3EMZdCLPPhSd6Pw/exec';
 
   // ============================================
   // 状態管理
   // ============================================
-  let mediaRecorder = null;
-  let audioChunks = [];
-  let audioBlob = null;
-  let audioUrl = null;
-  let audioElement = null;
-  let isRecording = false;
-  let isPlaying = false;
-  let timerInterval = null;
-  let seconds = 0;
+  var currentMode = 'report'; // 'report' or 'notice'
+  var mediaRecorder = null;
+  var audioChunks = [];
+  var audioBlob = null;
+  var audioUrl = null;
+  var audioElement = null;
+  var isRecording = false;
+  var isPlaying = false;
+  var timerInterval = null;
+  var seconds = 0;
 
-  const ankenInput = document.getElementById('ankenKey');
-  const ankenError = document.getElementById('ankenError');
+  // ============================================
+  // モード切替
+  // ============================================
+  function setMode(mode) {
+    currentMode = mode;
+    var btnReport = document.getElementById('modeReport');
+    var btnNotice = document.getElementById('modeNotice');
+    var guideReport = document.getElementById('guideReport');
+    var guideNotice = document.getElementById('guideNotice');
 
-  ankenInput.addEventListener('input', function() {
-    ankenError.classList.remove('show');
-    ankenInput.classList.remove('error');
-    updateSubmitState();
-  });
+    if (mode === 'report') {
+      btnReport.className = 'mode-btn active-report';
+      btnNotice.className = 'mode-btn';
+      guideReport.style.display = 'block';
+      guideNotice.style.display = 'none';
+    } else {
+      btnReport.className = 'mode-btn';
+      btnNotice.className = 'mode-btn active-notice';
+      guideReport.style.display = 'none';
+      guideNotice.style.display = 'block';
+    }
+  }
 
-  function validateAnkenKey() {
-    var val = ankenInput.value.trim();
-    if (!val) {
-      ankenError.textContent = '案件キーを入力してください';
-      ankenError.classList.add('show');
-      ankenInput.classList.add('error');
+  // ============================================
+  // バリデーション
+  // ============================================
+  function validateStaff() {
+    var select = document.getElementById('staffSelect');
+    var error = document.getElementById('staffError');
+    if (!select.value) {
+      error.classList.add('show');
+      select.classList.add('error');
       return false;
     }
-    if (val.length < 3) {
-      ankenError.textContent = '案件キーの形式が正しくありません';
-      ankenError.classList.add('show');
-      ankenInput.classList.add('error');
-      return false;
-    }
+    error.classList.remove('show');
+    select.classList.remove('error');
     return true;
   }
 
@@ -374,9 +453,9 @@
 
   function updateSubmitState() {
     var btn = document.getElementById('submitBtn');
-    var hasKey = ankenInput.value.trim().length >= 3;
+    var hasStaff = !!document.getElementById('staffSelect').value;
     var hasAudio = !!audioBlob;
-    btn.className = (hasKey && hasAudio) ? 'submit-btn ready' : 'submit-btn disabled';
+    btn.className = (hasStaff && hasAudio) ? 'submit-btn ready' : 'submit-btn disabled';
   }
 
   // ============================================
@@ -399,7 +478,7 @@
   // 送信
   // ============================================
   async function submitReport() {
-    if (!validateAnkenKey()) return;
+    if (!validateStaff()) return;
     if (!audioBlob) { showToast('音声を録音してください'); return; }
 
     var btn = document.getElementById('submitBtn');
@@ -412,22 +491,22 @@
 
     var prog = 0;
     var progInterval = setInterval(function() {
-      prog = Math.min(prog + Math.random() * 10, 90);
+      prog = Math.min(prog + Math.random() * 8, 90);
       fill.style.width = prog + '%';
-    }, 800);
+    }, 1000);
 
     try {
       var base64 = await blobToBase64(audioBlob);
 
       var payload = {
-        ankenKey: ankenInput.value.trim(),
+        staff: document.getElementById('staffSelect').value,
+        mode: currentMode,
         audio: base64,
         mimeType: audioBlob.type,
         duration: seconds,
         timestamp: new Date().toISOString()
       };
 
-      // GASにPOST送信（リダイレクトフォロー対応）
       var response = await fetch(GAS_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'text/plain;charset=utf-8' },
@@ -474,7 +553,7 @@
   }
 
   function resetAll() {
-    ankenInput.value = '';
+    document.getElementById('staffSelect').value = '';
     audioBlob = null; audioUrl = null; audioElement = null;
     isPlaying = false; isRecording = false; seconds = 0;
     document.getElementById('recTimer').textContent = '0:00';
@@ -484,6 +563,7 @@
     document.getElementById('submitBtn').className = 'submit-btn disabled';
     document.getElementById('submitBtn').textContent = '送信する';
     updateRecUI();
+    setMode('report');
     document.getElementById('successScreen').classList.remove('show');
     document.getElementById('mainScreen').style.display = 'block';
   }
